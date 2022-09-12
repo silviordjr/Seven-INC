@@ -16,6 +16,18 @@ export default class EmployeeBusiness {
             throw new Error ("Documento já cadastrado.")
         }
 
+        const arrayEmail = email.split('@')
+
+        if (arrayEmail.length != 2){
+            throw new Error ("Email inválido.")
+        }
+
+        const arrayPhone = phone.split(')')
+
+        if (arrayPhone.length != 2 || phone.length < 12 || phone.length > 13 || phone.indexOf('(') != 0 || phone.indexOf(')') != 3 || arrayPhone[1].length > 9 || arrayPhone[1].length < 8 || arrayPhone[1].replace(/(^[0-9]+$)/, '').length != 0){
+            throw new Error ("Telefone inválido.")
+        }
+
         const id = new IdGenerator().generateId()
         const date = new Date()
         const created_at = date.toISOString().split('T')[0]
@@ -43,6 +55,22 @@ export default class EmployeeBusiness {
         const oldEmploy = await employeeDB.getById(id)
 
         const newEmployee = new Employee(id, name || oldEmploy.getName(), document || oldEmploy.getDocument(), email || oldEmploy.getEmail(), phone || oldEmploy.getPhone(), birthDate || oldEmploy.getBirthDate(), salary || oldEmploy.getSalary(), oldEmploy.getCreatedAt())
+
+        if (!cpf.isValid(newEmployee.getDocument())){
+            throw new Error ("CPF inválido.")
+        }
+
+        const arrayEmail = newEmployee.getEmail().split('@')
+
+        if (arrayEmail.length != 2){
+            throw new Error ("Email inválido.")
+        }
+
+        const arrayPhone = newEmployee.getPhone().split(')')
+
+        if (arrayPhone.length != 2 || newEmployee.getPhone().length < 12 || newEmployee.getPhone().length > 13 || newEmployee.getPhone().indexOf('(') != 0 || newEmployee.getPhone().indexOf(')') != 3 || arrayPhone[1].length > 9 || arrayPhone[1].length < 8 || arrayPhone[1].replace(/(^[0-9]+$)/, '').length != 0){
+            throw new Error ("Telefone inválido.")
+        }
 
         await employeeDB.update(newEmployee)
     }
