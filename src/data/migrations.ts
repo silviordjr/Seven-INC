@@ -10,7 +10,7 @@ create table if not exists employee (
     email varchar(257) not null,
     phone varchar(13) not null,
     birth_date date not null,
-    salary numeric not null,
+    salary float not null,
     created_at date not null
     );
     
