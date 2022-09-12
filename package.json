@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev ./src/index.ts",
-    "start": "node ./build/index.js",
+    "start": "tsc && node ./build/src/index.js",
     "build": "tsc",
     "migrations": "tsnd ./src/data/migrations.ts",
-    "debug": "npx tsc && node --inspect ./build/index.js"
+    "debug": "npx tsc && node --inspect ./build/src/index.js"
   },
   "repository": {
     "type": "git",
