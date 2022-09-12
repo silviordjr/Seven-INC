@@ -23,6 +23,7 @@
   "homepage": "https://github.com/silviordjr/Seven-INC#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "cpf-cnpj-validator": "^1.0.3",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "knex": "^2.3.0",
