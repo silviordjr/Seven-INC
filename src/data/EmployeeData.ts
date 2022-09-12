@@ -54,4 +54,17 @@ export default class EmployeeData {
             return false
         }
     }
+
+    async update (employee: Employee): Promise<void> {
+        await connection ('employee')
+        .update({
+            name: employee.getName(),
+            document: employee.getDocument(),
+            email: employee.getEmail(),
+            phone: employee.getPhone(),
+            birth_date: employee.getBirthDate(),
+            salary: employee.getSalary(),
+        })
+        .where('id', employee.getId())
+    }
 }

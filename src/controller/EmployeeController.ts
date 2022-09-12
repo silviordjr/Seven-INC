@@ -37,4 +37,17 @@ export default class EmployeeController {
             res.status(500).send(error.message || error.sqlmessage)
         }
     }
+
+    async update (req: Request, res: Response): Promise<void> {
+        try {
+            const id = req.params.id;
+            const {name, document, email, phone, birthDate, salary} = req.body
+
+            await new EmployeeBusiness().update(id, name, document, email, phone, birthDate, salary)
+
+            res.status(200).send({message: "Atualização concluída."})   
+        } catch (error: any) {
+            res.status(500).send(error.message || error.sqlmessage)
+        }
+    }
 }

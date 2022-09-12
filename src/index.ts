@@ -7,3 +7,5 @@ app.get('/employee', employeeController.get)
 app.get('/employee/:id', employeeController.getById)
 
 app.post('/employee', employeeController.create)
+
+app.put('/employee/:id', employeeController.update)

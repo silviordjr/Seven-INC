@@ -36,4 +36,14 @@ export default class EmployeeBusiness {
 
         return employee
     }
+
+    async update (id: string, name: string | undefined, document: string | undefined, email: string | undefined, phone: string | undefined, birthDate: string | undefined, salary: number | undefined): Promise <void> {
+        const employeeDB = new EmployeeData()
+
+        const oldEmploy = await employeeDB.getById(id)
+
+        const newEmployee = new Employee(id, name || oldEmploy.getName(), document || oldEmploy.getDocument(), email || oldEmploy.getEmail(), phone || oldEmploy.getPhone(), birthDate || oldEmploy.getBirthDate(), salary || oldEmploy.getSalary(), oldEmploy.getCreatedAt())
+
+        await employeeDB.update(newEmployee)
+    }
 }
