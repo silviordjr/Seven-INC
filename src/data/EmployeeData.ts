@@ -19,7 +19,7 @@ export default class EmployeeData {
     async get(page: number): Promise<Employee []> {
         const employee = await connection ('employee')
         .limit(10)
-        .offset(page * 10)
+        .offset((page - 1) * 10)
         .select('*')
 
         const employees: Employee [] = []
