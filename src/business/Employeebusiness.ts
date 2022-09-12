@@ -46,4 +46,8 @@ export default class EmployeeBusiness {
 
         await employeeDB.update(newEmployee)
     }
+
+    async delete (id: string): Promise<void> {
+        await new EmployeeData().delete(id)
+    }
 }

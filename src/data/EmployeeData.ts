@@ -67,4 +67,10 @@ export default class EmployeeData {
         })
         .where('id', employee.getId())
     }
+
+    async delete (id: string): Promise <void> {
+        await connection ('employee')
+        .del()
+        .where('id', id)
+    }
 }
